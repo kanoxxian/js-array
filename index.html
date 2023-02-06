@@ -26,28 +26,31 @@
                 <div class="image">
                     <p>Image:</p>
                     <img id="image-save" class="image-save" src="https://via.placeholder.com/150">
-                    <button class="btn-refresh" type="submit" onclick="RandomImage()">Refresh</button>
+                    <button class="btn-refresh" type="submit" onclick="randomImage()">Refresh</button>
                 </div>
                 <button class="btn-save" type="submit" formnovalidate>Save</button>
             </form>
             </div>
             <div class="card2">
-                <div class="nothing-saved">
+                <div id="nothing-saved" class="nothing-saved">
                     <h2>No Images Saved</h2>
                 </div>
+                <div id="imageoutput"></div>  
                 <div class="instructions">
                     <p>How it works!</p>
-                    <ul>
-                        <li>Enter an Email address</li>
-                        <li>Press "Save" to store the image</li>
-                        <li>Save as many as you'd like!</li>
-                    </ul>
+                <ul>
+                    <li>Enter an Email address</li>
+                    <li>Press "Save" to store the image</li>
+                    <li>Save as many as you'd like!</li>
+                </ul>
                 </div>
+    </div>
             </div>
         </div>
+        <div id="user-message"></div>
     </div>
 </div>
-<div id="user-message">aaaaaaaaaaa</div>
+
 
 <footer>
     <div class="footer-line"></div>

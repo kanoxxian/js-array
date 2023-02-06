@@ -12,7 +12,11 @@ body {
     font-size: 16px;
     background-color: $wisteria;
     color: $coffee;
-    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none;
 }
 
 .margin {
@@ -126,7 +130,7 @@ footer {
 
 .card2 {
     height: auto;
-    width: 600px;
+    width: 850px;
     padding: 20px;
     color: $columbia;
     border-radius: 3px;
@@ -154,4 +158,63 @@ footer {
 
 .row {
     display: flex;
+}
+
+.newest {
+    order: -1;
+}
+
+#user-message {
+    display: block;
+    width: 80%;
+    color: $wisteria;
+    text-align: center;
+    font-size: 24px;
+    background-color: red;
+    padding: 10px 0;
+    border: 1px solid $columbia;
+}
+
+#imageoutput {
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: $magenta;
+}
+
+#imageoutput ul {
+    display: flex;
+    flex-direction: column;
+}
+
+#imageoutput ul li {
+    margin: 5px 0;
+}
+
+#imageoutput ul > li > ul {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    list-style: none;
+}
+
+#imageoutput ul li > ul > li {
+    max-width: 100%;
+    margin-bottom: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+img {
+    max-width: 100%;
+    border: 1px solid $columbia;
+}
+
+h4 {
+    color: $columbia;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    font-weight: 300;
 }
