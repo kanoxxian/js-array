@@ -5,7 +5,9 @@ const form = document.getElementById("form");
 const pic = document.getElementById("image-save");
 const imageoutput = document.getElementById("imageoutput");
 const save_btn = document.querySelector('.btn-save');
-const hide = document.getElementById("nothing-saved")
+const refrsh_btn = document.querySelector('.btn-refresh');
+const hide = document.getElementById("nothing-saved");
+const show = document.getElementById("user-message");
 let url = "";
 let first = "";
 
@@ -19,7 +21,7 @@ function randomImage() {
 window.onload = randomImage();
 
 
-// //creates image list in DOM
+//creates image list in DOM
 function imagelist() {
     list();
     imageoutput.innerHTML = `<ul>${list()}</ul>`;
@@ -44,7 +46,7 @@ function Ulist(i) {
     return picList;
 }
 
-// adds a class that pushes the last submitted email to top
+// pushes the last email entered to the top.
 function setOnGoing(email) {
     if (first !== "") {
         first.classList.remove("newest");
@@ -55,10 +57,10 @@ function setOnGoing(email) {
 
 // Email validation function
 function checkMail(email) {
+    show.classList.remove('email-error')
     return validEmail.test(email);
 }
 
-// Storing information in the array
 form.addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -70,44 +72,48 @@ form.addEventListener("submit", function(event) {
     infoMsg.innerHTML = "";
     let email = document.getElementById("email").value;
     if (!checkMail(email)) {
+        show.classList.add('email-error')
         infoMsg.innerHTML = "Please enter a valid email address";
         return;
     } 
 
-    // Create an array of all stored email addresses
+    // Makes and array of all stored addresses.
     for ( let i = 0; i < xArr.length; i++ ) {
         emailAdd.push(xArr[i][0]);
         console.log(emailAdd);
     }
-    // Check if the submitted email is already in the array
     if (emailAdd.includes(email)) {
         let position = emailAdd.indexOf(email);
-        console.log(`Email address already stored at index ${position}`);
-        // Check if the subitted picture has already been associated with this email address
+        console.log(`Email address already entered ${position}`);
+        // Checks if the email has already been entered.
         if (xArr[position][1].includes(thisImage)) {
             randomImage();
-            // Maybe make a screen output for this to avoid confusion
-            // If someone tries to add an image twice they may think the page is broken
-            console.log("This picture has already been associated with this email address");
             infoMsg.innerHTML = "Picture already added";
             return;
         }
-        // Associate the submitted picture with the stored email
+        // Links the email with relevant image.
         xArr[position][1].push(thisImage);
-        console.log(`This picture has been associated with ${email}`);
         imagelist();
         setOnGoing(email);
         infoMsg.innerHTML = "New picture added";
         return;
     } else {
-        // Add the email and picture to the array
+        // Adds email/pic to array.
         xArr.push([email, [thisImage]]);
         console.log(`${email} and ${thisImage} have been added to the array`);
         imagelist();
         infoMsg.innerHTML = "New picture added";
+        show.classList.add('added-image');
     }
 });
 
 save_btn.addEventListener('click', function() {
     hide.classList.add('hidden');
+    show.classList.remove('opacity');
+    show.classList.remove('added-image');
+});
+
+refrsh_btn.addEventListener('click', function() {
+    hide.classList.remove('hidden');
+    show.classList.add('opacity');
 });
